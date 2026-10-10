@@ -86,6 +86,15 @@ PORT=8080
 
 `DEEPSEEK_TIMEOUT_MS` 可选，默认 90000。Zeabur 等部署环境到 DeepSeek 的链路可能比本地慢，如果 AI 导入频繁超时，可在部署平台显式配置为 `90000` 或更高。
 
+高德 Web 端（JS API）配置对应关系：
+
+| 运行环境 | `js/config.js` 中的 Key | 服务端 `AMAP_JSCODE` |
+| --- | --- | --- |
+| 本地 `localhost` / `127.0.0.1` | `develop_api` | 同一 Key 对应的安全密钥，写入本地 `.env` |
+| 线上站点 | `production_api` | 同一 Key 对应的安全密钥，设置在 Zeabur 环境变量中 |
+
+当前线上地址为 https://travelwithme.preview.aliyun-zeabur.cn/ ，生产 Key 的域名白名单填写 `travelwithme.preview.aliyun-zeabur.cn`（不带协议和路径）。更换 Key 时须同步更新对应环境的 `AMAP_JSCODE`，并重启服务使其生效。安全密钥不提交到 GitHub。
+
 ## 部署
 
 当前部署依赖 Node/Hono。部署目录必须是包含 `package.json`、`server/`、`index.html` 的项目根目录。
